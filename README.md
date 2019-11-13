@@ -1,0 +1,1 @@
+# springboot-component-scan-poc
