@@ -3,17 +3,19 @@ package com.rbittencourt.springbootcomponentscanpoc.config;
 import com.rbittencourt.springbootcomponentscanpoc.cloudproviders.annotation.Aws;
 import com.rbittencourt.springbootcomponentscanpoc.cloudproviders.annotation.Azure;
 import com.rbittencourt.springbootcomponentscanpoc.cloudproviders.annotation.GoogleCloud;
-import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.ClassMetadata;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.TypeFilter;
 
-import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.util.Set;
 
 public class ComponentScanCustomFilter implements TypeFilter {
+
+    private static final String AWS = "AWS";
+    private static final String AZURE = "AZURE";
+    private static final String GOOGLE = "GOOGLE";
+    private static final String CLOUD_PROVIDER_ENV_VAR = "CLOUD_PROVIDER";
 
     @Override
     public boolean match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory) {
@@ -25,25 +27,25 @@ public class ComponentScanCustomFilter implements TypeFilter {
 
             return clazz.isAnnotationPresent(cloudProvider);
         } catch (ClassNotFoundException e) {
-            throw new IllegalStateException("Cloud Provider is Invalid");
+            throw new IllegalStateException("Cloud Provider is invalid");
         }
     }
 
     private Class<? extends Annotation> getCloudProviderFromEnv() {
-        String cloudProvider = System.getenv("CLOUD_PROVIDER");
+        String cloudProvider = System.getenv(CLOUD_PROVIDER_ENV_VAR);
 
         switch (cloudProvider) {
-            case "AWS":
+            case AWS:
                 return Aws.class;
 
-            case "AZURE":
+            case AZURE:
                 return Azure.class;
 
-            case "GOOGLE":
+            case GOOGLE:
                 return GoogleCloud.class;
 
             default:
-                throw new IllegalStateException("Cloud Provider is Invalid");
+                throw new IllegalStateException("Cloud Provider is invalid");
         }
     }
 
