@@ -5,10 +5,15 @@ plugins {
 }
 
 group = 'com.rbittencourt'
-sourceCompatibility = '1.8'
+targetCompatibility = '12'
+sourceCompatibility = '12'
 
 repositories {
 	mavenCentral()
+}
+
+ext {
+	appVersion="1.0.0"
 }
 
 dependencies {
