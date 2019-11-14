@@ -1,15 +1,14 @@
 package com.rbittencourt.springbootcomponentscanpoc.cloudproviders;
 
-import com.rbittencourt.springbootcomponentscanpoc.api.CloudProviderCompany;
 import com.rbittencourt.springbootcomponentscanpoc.api.CloudProviderServiceName;
 import com.rbittencourt.springbootcomponentscanpoc.cloudproviders.annotation.Azure;
 
 @Azure
-public class AzureServiceName implements CloudProviderCompany {
+public class AzureServiceName implements CloudProviderServiceName {
 
     @Override
-    public String company() {
-        return "Microsoft";
+    public String getServiceName() {
+        return "Azure";
     }
 
 }
