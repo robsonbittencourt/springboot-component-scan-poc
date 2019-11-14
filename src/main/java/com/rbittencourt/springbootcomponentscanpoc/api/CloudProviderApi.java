@@ -8,16 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class CloudProviderApi {
 
     @Autowired
-    private CloudProviderService cloudProviderService;
+    private CloudProviderServiceName cloudProviderServiceName;
+
+    @Autowired
+    private CloudProviderCompany cloudProviderCompany;
 
     @GetMapping("/name")
     public String name() {
-        return cloudProviderService.getServiceName();
+        return cloudProviderServiceName.getServiceName();
     }
 
     @GetMapping("/company")
     public String company() {
-        return cloudProviderService.company();
+        return cloudProviderCompany.company();
     }
 
 }

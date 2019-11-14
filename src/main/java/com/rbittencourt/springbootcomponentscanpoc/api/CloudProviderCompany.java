@@ -1,8 +1,6 @@
 package com.rbittencourt.springbootcomponentscanpoc.api;
 
-public interface CloudProviderService {
-
-    String getServiceName();
+public interface CloudProviderCompany {
 
     String company();
 
